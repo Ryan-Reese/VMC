@@ -12,10 +12,10 @@ dependencies = [
   "opencv-python",
   "matplotlib",
   "numpy",
-  "bagpype",
   "scipy",
   "networkx",
-  "pygenstability"
+  # "bagpype",
+  # "pygenstability"
 ]
 authors = [
 { name="Ryan Reese", email="thenewteadrinker@gmail.com" },
