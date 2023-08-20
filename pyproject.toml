@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "VisualiseMarkovCommunities"
-version = "0.0.1"
+version = "0.0.3"
 dependencies = [
   # PyMOL package should be preinstalled in PyMOL prompt
   # "pymol >= 2.0.0"
