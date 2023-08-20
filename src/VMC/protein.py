@@ -21,12 +21,12 @@ from copy import deepcopy
 from typing import Any, List, Optional, Union
 
 # Internal modules
-from compile import compile_images
-from cleaning import remove_unspecified_A
-from colouring import allocate_colours, colour_atom, delete_previous_A
-from helpers import verify_scale, verify_scale_multi
-from plot import create_plot
-from results import Results
+from VMC.compile import compile_images
+from VMC.cleaning import remove_unspecified_A
+from VMC.colouring import allocate_colours, colour_atom, delete_previous_A
+from VMC.helpers import verify_scale, verify_scale_multi
+from VMC.plot import create_plot
+from VMC.results import Results
 
 class Protein:
 
