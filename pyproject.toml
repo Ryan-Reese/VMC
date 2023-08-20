@@ -3,10 +3,11 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "VMC"
+name = "VisualiseMarkovCommunities"
 version = "0.0.1"
 dependencies = [
-  "pymol >= 2.0.0",
+  # PyMOL package should be preinstalled in PyMOL prompt
+  # "pymol >= 2.0.0"
   "mypy",
   "tqdm",
   "opencv-python",
@@ -20,7 +21,7 @@ dependencies = [
 authors = [
 { name="Ryan Reese", email="thenewteadrinker@gmail.com" },
 ]
-description = "A PyMol script that enables the visiualisation of Markov Communities in biological molecules."
+description = "PyMOL visualisation of Markov communities within biological molecules."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
