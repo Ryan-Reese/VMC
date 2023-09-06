@@ -45,7 +45,7 @@ prot_name = Protein(pdb_code: str)
 prot_name.load_PDB()
 ```
 
-The name of the `Protein` object does not matter. In this tutorial, it is named `ADK` due to the PDB code belonging to a conformation of Adenylate Kinase in Aquifex Aeolicus.
+The name of the `Protein` object does not matter. In this tutorial, it is named `ADK` due to the PDB code belonging to a conformation of Adenylate Kinase in Aquifex Aeolicus[^13].
 ```python
 from VMC import Protein
 ADK = Protein("2rh5")
@@ -86,7 +86,7 @@ ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime
 
 ### Visualising Atom Communities
 We finally arrive at the crux of the package!
-To colour and visualise atoms by their community, simply use the method `visualise_A()`
+To colour and visualise atoms by their community, simply use the method `visualise_A()`.
 
 The only parameter that **has** to be specified is the Markov timescale that would like to be visualised. Optional parameters for `visualise_A()` are specified in the [protein](src/VMC/protein.py) module.
 
@@ -99,31 +99,43 @@ ADK.visualise_A(scale = 90)
 To visualise atom communities at multiple Markov timescales, the method `visualise_multi_A()` can be used
 
 ```python
-ADK.visualise_multi_A(scales = [0,25,50,75])
-or
 ADK.visualise_multi_A(scales = range(20))
 ```
 
 If `image = True` then snapshots of the atom communities at each Markov timescale are named and saved in .png format within the relative directory `./pymol_images`.
 
-<img src="/assets/demo_visualise_multi_A.png" alt="demo_visualise_multi_A" width="400">
-
-Snapshots saved in the `./pymol_images` can then be compiled into an animation using the method `compile()`, which is saved in the relative directory `./pymol_videos`.
-This allows us to visualise how atom communities change as the Markov timescale increases.
-
+Snapshots saved in `./pymol_images` can then be compiled into an animation using the method `compile()`, which is saved in the relative directory `./pymol_videos`.
+This allows us to visualise how atom communities change as the Markov timescale increases. For instance,
 
 ```python
+ADK.visualise_multi_A(scales = [0,25,50,75], image = True)
 ADK.compile()
 ```
 
-<img src="/assets/demo_compile_directory.png" alt="demo_compile_directory" width="400"> ![demo_compile](./assets/demo_compile.mp4)
+<img src="/assets/demo_visualise_A_directory.png" alt="demo_visualise_A_directory" width="400"> <img src="/assets/demo_compile_directory.png" alt="demo_compile_directory" width="400"> 
+ 
+Importantly, the results of Markov Stability analysis can be plotted and viewed without exiting *PyMOL* using the method `plot()`
 
-Importantly, 
+```python
+ADK.plot()
+```
 
+<img src="/assets/demo_plot.png" alt="demo_plot" width="400"> <img src="/assets/plot.png" alt="plot" width="400"> 
+
+The most robust partitions as found by [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master)[^12] are automatically labelled with their scale number and number of communities.
 
 ## Examples
 
+
+https://github.com/Ryan-Reese/VMC/assets/109569773/e6d1757f-9a0c-4988-95e3-8344365bc9b1
+
+
 ## Functions
+
+Currently built-in methods for the `Protein` class are:
+| Method | Function |
+| :---: | :---: |
+| 
 
 ## Contributors
  - Ryan Reese, Yaliraki Group, Department of Chemistry, Imperial College London
@@ -153,3 +165,5 @@ Importantly,
 [^11]: Song, F., Barahona, M. & Yaliraki, S. N. BagPype: A Python package for the construction of atomistic, energy-weighted graphs from biomolecular structures.  (2022). https://doi.org:10.5281/zenodo.6326081
 
 [^12]: Arnaudon, A. et al. barahona-research-group/PyGenStability.  (2023). https://doi.org:10.5281/zenodo.7898442
+
+[^13]: Henzler-Wildman, K. A. et al. Intrinsic motions along an enzymatic reaction trajectory. Nature 450, 838-844 (2007). https://doi.org:10.1038/nature06410
