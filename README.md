@@ -24,7 +24,7 @@ pip install VisualiseMarkovCommunities
 > [!IMPORTANT]
 > Ensure that VMC is installed into *PyMOL*’s bundled version of Python
 
-## Tutorial
+## Tutorial + Demo Run
 ### Initialisation
 To initialise *VMC* into the current *PyMOL* session, simply use
 
@@ -37,7 +37,7 @@ A grey background indicates that the package has been successfully imported.
 <img src="/assets/demo_init.png" alt="demo_init" width="400">
 
 ### Loading a protein
-To load a protein's structure from its PDB file, simply create a `Protein` object with specified PDB code and use the built-in method `load_PDB()`
+To load a protein's structure from its PDB file, simply create a `Protein` object by specifying its PDB code and use the built-in method `load_PDB()`
 
 ```python
 from VMC import Protein
@@ -45,9 +45,9 @@ prot_name = Protein(pdb_code: str)
 prot_name.load_PDB()
 ```
 
-For instance,
-
+The name of the `Protein` object does not matter. In this tutorial, it is named `ADK` due to the PDB code belonging to a conformation of Adenylate Kinase in Aquifex Aeolicus.
 ```python
+from VMC import Protein
 ADK = Protein("2rh5")
 ADK.load_PDB()
 ```
@@ -58,7 +58,7 @@ ADK.load_PDB()
 > If a local PDB file is used, ensure that the PDB file is saved in the relative directory `./PDBs`
 
 ### Loading the results of Markov Stability
-Before atoms communities can be visualised, results must be loaded into Protein object. 
+Before atoms communities can be visualised, results must be loaded into the `Protein` object. 
 This is achieved using the method `load_results()`
 
 ```python
@@ -88,17 +88,7 @@ ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime
 We finally arrive at the crux of the package!
 To colour and visualise atoms by their community, simply use the method `visualise_A()`
 
-```python
-prot_name.visualise_A(scale: int,
-                      specific_residues: List[int] = [],
-                      specific_atoms: List[int] = [],
-                      specific_communities: List[int] = [],
-                      show_entire_community: bool = False,
-                      image: bool = False)
-```
-
-The only parameter that **has** to be specified is the Markov timescale that would like to be visualised.
-For instance, 
+The only parameter that **has** to be specified is the Markov timescale that would like to be visualised. Optional parameters for `visualise_A()` are specified in the [protein](src/VMC/protein.py) module.
 
 ```python
 ADK.visualise_A(scale = 90)
@@ -107,17 +97,6 @@ ADK.visualise_A(scale = 90)
 <img src="/assets/demo_visualise_A.png" alt="demo_visualise_A" width="400"> <img src="/assets/demo_visualise_A_prot.png" alt="demo_visualise_A_prot" width="400">
 
 To visualise atom communities at multiple Markov timescales, the method `visualise_multi_A()` can be used
-
-```python
-prot_name.visualise_multi_A(scales: List[int] or range,
-                            specific_residues: List[int] = [],
-                            specific_atoms: List[int] = [], 
-                            specific_communities: List[int] = [], 
-                            show_entire_community: bool = False,
-                            image: bool = False)
-```
-
-For instance,
 
 ```python
 ADK.visualise_multi_A(scales = [0,25,50,75])
@@ -129,6 +108,17 @@ If `image = True` then snapshots of the atom communities at each Markov timescal
 
 <img src="/assets/demo_visualise_multi_A.png" alt="demo_visualise_multi_A" width="400">
 
+Snapshots saved in the `./pymol_images` can then be compiled into an animation using the method `compile()`, which is saved in the relative directory `./pymol_videos`.
+This allows us to visualise how atom communities change as the Markov timescale increases.
+
+
+```python
+ADK.compile()
+```
+
+<img src="/assets/demo_compile_directory.png" alt="demo_compile_directory" width="400"> ![demo_compile](./assets/demo_compile.mp4)
+
+Importantly, 
 
 
 ## Examples
