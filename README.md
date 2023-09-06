@@ -37,9 +37,10 @@ A grey background indicates that the package has been successfully imported.
 <img src="/assets/demo_init.png" alt="demo_init" width="400">
 
 ### Loading a protein
-To load a protein's structure from its PDB file, simply create a `Protein` object and use the built-in method `load_PDB()`
+To load a protein's structure from its PDB file, simply create a `Protein` object with specified PDB code and use the built-in method `load_PDB()`
 
 ```python
+from VMC import Protein
 prot_name = Protein(pdb_code: str)
 prot_name.load_PDB()
 ```
@@ -57,13 +58,14 @@ ADK.load_PDB()
 > If a local PDB file is used, ensure that the PDB file is saved in the relative directory `./PDBs`
 
 ### Loading the results of Markov Stability
-To load results into the `Protein` object, use the method `load_results()`
+Before atoms communities can be visualised, results must be loaded into Protein object. 
+This is achieved using the method `load_results()`
 
 ```python
 prot_name.load_results(matrix_type: str, constructor: str, datetime: str)
 ```
 
-The currently-possible inputs for this method are
+The currently-supported inputs for this method are
 
 | matrix_type | constructor | datetime |
 | :---: | :---: | :---: |
@@ -72,15 +74,15 @@ The currently-possible inputs for this method are
 
 For instance,
 
-```
+```python
 ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime = “040823-19_40”)
 ```
 
 <img src="/assets/demo_load_results.png" alt="demo_load_results" width="400">
 
 > [!NOTE]
-> Results obtained using the included [scripts](src/VMC/precompute_A.py) are saved in the relative directory `./pygenstability`.
-> By default, *VMC* searches for the results file in this folder when attempting to load results.
+> Results obtained using the included [scripts](src/VMC/precompute_A.py) are automatically saved in the relative directory `./pygenstability`.
+> By default, *VMC* searches for the results file in this folder when attempting to load results, hence using the included [scripts](src/VMC/precompute_A.py) is recommended.
 
 ### Visualising Atom Communities
 We finally arrive at the crux of the package!
@@ -95,19 +97,38 @@ prot_name.visualise_A(scale: int,
                       image: bool = False)
 ```
 
-The only parameter that has to be specified is the Markov timescale that would like to be visualised.
+The only parameter that **has** to be specified is the Markov timescale that would like to be visualised.
 For instance, 
 
 ```python
 ADK.visualise_A(scale = 90)
 ```
-<img src="/assets/demo_visualise_A.png" alt="demo_visualise_A" width="400">
+
+<img src="/assets/demo_visualise_A.png" alt="demo_visualise_A" width="400"> <img src="/assets/demo_visualise_A_prot.png" alt="demo_visualise_A_prot" width="400">
 
 To visualise atom communities at multiple Markov timescales, the method `visualise_multi_A()` can be used
 
 ```python
-prot_name.visualise_multi_A(scale: List[int] or range, specific_residues: List[int] = [], specific_atoms: List[int] = [], specific_communities: List[int] = [], show_entire_community: bool = False, image: bool = False)
+prot_name.visualise_multi_A(scales: List[int] or range,
+                            specific_residues: List[int] = [],
+                            specific_atoms: List[int] = [], 
+                            specific_communities: List[int] = [], 
+                            show_entire_community: bool = False,
+                            image: bool = False)
 ```
+
+For instance,
+
+```python
+ADK.visualise_multi_A(scales = [0,25,50,75])
+or
+ADK.visualise_multi_A(scales = range(20))
+```
+
+If `image = True` then snapshots of the atom communities at each Markov timescale are named and saved in .png format within the relative directory `./pymol_images`.
+
+<img src="/assets/demo_visualise_multi_A.png" alt="demo_visualise_multi_A" width="400">
+
 
 
 ## Examples
