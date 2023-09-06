@@ -2,27 +2,59 @@
 [![License](https://img.shields.io/github/license/Ryan-Reese/VMC)](./LICENSE)
 
 # VMC - *Visualise Markov Communities*
-
-This *Python* package allows users to easily colour communities of atoms within proteins using the molecular visualization system *PyMOL*[^1]. 
+This Python package allows users to easily colour communities of atoms within proteins using the molecular visualization system *PyMOL*[^1]. 
 These multiscale communities are found by performing computational analysis using Markov Stability on the energy-weighted atomistic graph representation of the protein. 
 For background information on this method of graph partitioning and examples of its use in the unsupervised identification of protein substructures please see [^2][^3][^4][^5] and [^6][^7][^8][^9][^10] respectively.
 
 <img src="/assets/header_1.png" alt="header_1" width="400"> <img src="/assets/header_2.png" alt="header_2" width="400">
 
 ## Usage
-
 This package was designed so that results from the packages [*Bagpype*](https://github.com/FlorianSong/BagPype)[^11] and [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master)[^12] can be directly fed in. The package also includes [scripts](src/VMC/precompute_A.py) that simplify the process of obtaining these results. An illustration of the intended scheme is shown below:
 
 <img src="/assets/scheme.png" alt="scheme" width="">
 
 ## Functions
 
+## Installation
+The official PyPI version of *VMC* can be installed with
+
+```python
+pip install VisualiseMarkovCommunities
+```
+
+> [!IMPORTANT]
+> Ensure that VMC is installed into *PyMOL*’s bundled version of Python
+
 ## Demo Run
+### Initialisation
+To initialise *VMC* into the current *PyMOL* session, simply use
+
+```python
+import VMC
+```
+
+A grey background indicates that the package has been successfully imported.
+
+<img src="/assets/demo_init.png" alt="demo_init" width="">
+
+### Loading a protein
+To load a protein's structure from a PDB file, simply create a `Protein` object and use the built-in method `load_PDB()`
+
+```python
+prot_name = Protein(pdb_code: str)
+prot_name.load_PDB()
+```
+
+<img src="/assets/demo_load_protein.png" alt="demo_load_protein" width="">
+
+
+## Examples
 
 ## Contributors
  - Ryan Reese, Yaliraki Group, Department of Chemistry, Imperial College London
    - GitHub: [`Ryan-Reese`](https://github.com/Ryan-Reese)
 
+## *References*
 [^1]: Schrodinger, LLC. The PyMOL Molecular Graphics System, Version 2.0 (2017).
 
 [^2]: Delvenne, J.-C., Yaliraki, S. N. & Barahona, M. Stability of graph communities across time scales. Proceedings of the National Academy of Sciences 107, 12755-12760 (2010). https://doi.org:10.1073/pnas.0903215107
