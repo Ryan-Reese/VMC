@@ -13,7 +13,6 @@ This package was designed so that results from the packages [*Bagpype*](https://
 
 <img src="/assets/scheme.png" alt="scheme" width="">
 
-## Functions
 
 ## Installation
 The official PyPI version of *VMC* can be installed with
@@ -25,7 +24,7 @@ pip install VisualiseMarkovCommunities
 > [!IMPORTANT]
 > Ensure that VMC is installed into *PyMOL*’s bundled version of Python
 
-## Demo Run
+## Tutorial
 ### Initialisation
 To initialise *VMC* into the current *PyMOL* session, simply use
 
@@ -35,20 +34,85 @@ import VMC
 
 A grey background indicates that the package has been successfully imported.
 
-<img src="/assets/demo_init.png" alt="demo_init" width="">
+<img src="/assets/demo_init.png" alt="demo_init" width="400">
 
 ### Loading a protein
-To load a protein's structure from a PDB file, simply create a `Protein` object and use the built-in method `load_PDB()`
+To load a protein's structure from its PDB file, simply create a `Protein` object and use the built-in method `load_PDB()`
 
 ```python
 prot_name = Protein(pdb_code: str)
 prot_name.load_PDB()
 ```
 
-<img src="/assets/demo_load_protein.png" alt="demo_load_protein" width="">
+For instance,
+
+```python
+ADK = Protein("2rh5")
+ADK.load_PDB()
+```
+
+<img src="/assets/demo_load_protein.png" alt="demo_load_protein" width="400">
+
+> [!NOTE]
+> If a local PDB file is used, ensure that the PDB file is saved in the relative directory `./PDBs`
+
+### Loading the results of Markov Stability
+To load results into the `Protein` object, use the method `load_results()`
+
+```python
+prot_name.load_results(matrix_type: str, constructor: str, datetime: str)
+```
+
+The currently-possible inputs for this method are
+
+| matrix_type | constructor | datetime |
+| :---: | :---: | :---: |
+| `A` (energy-weighted adjacency matrix) | `linearized` `continuous_combinatorial` `continuous_normalized` | DDMMYY-hh_mm |
+| Constructed using [*Bagpype*](https://github.com/FlorianSong/BagPype)[^11] | Chosen within [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master)[^12] | Used to distinguish between multiple results files whose other parameters are identical |
+
+For instance,
+
+```
+ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime = “040823-19_40”)
+```
+
+<img src="/assets/demo_load_results.png" alt="demo_load_results" width="400">
+
+> [!NOTE]
+> Results obtained using the included [scripts](src/VMC/precompute_A.py) are saved in the relative directory `./pygenstability`.
+> By default, *VMC* searches for the results file in this folder when attempting to load results.
+
+### Visualising Atom Communities
+We finally arrive at the crux of the package!
+To colour and visualise atoms by their community, simply use the method `visualise_A()`
+
+```python
+prot_name.visualise_A(scale: int,
+                      specific_residues: List[int] = [],
+                      specific_atoms: List[int] = [],
+                      specific_communities: List[int] = [],
+                      show_entire_community: bool = False,
+                      image: bool = False)
+```
+
+The only parameter that has to be specified is the Markov timescale that would like to be visualised.
+For instance, 
+
+```python
+ADK.visualise_A(scale = 90)
+```
+<img src="/assets/demo_visualise_A.png" alt="demo_visualise_A" width="400">
+
+To visualise atom communities at multiple Markov timescales, the method `visualise_multi_A()` can be used
+
+```python
+prot_name.visualise_multi_A(scale: List[int] or range, specific_residues: List[int] = [], specific_atoms: List[int] = [], specific_communities: List[int] = [], show_entire_community: bool = False, image: bool = False)
+```
 
 
 ## Examples
+
+## Functions
 
 ## Contributors
  - Ryan Reese, Yaliraki Group, Department of Chemistry, Imperial College London
