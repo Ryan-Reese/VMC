@@ -15,7 +15,7 @@ def parse_pdb_to_prot(pdb_code: str) -> bagpype.molecules.Protein:
     # specify relative path to pdb file
     # if download=False, then pdb file must already be stored locally
     pdb_file = f'./PDBs/{pdb_code}.pdb'
-    parser = bagpype.parsing.PDBParser(pdb_file, download=False)
+    parser = bagpype.parsing.PDBParser(pdb_file, download=True)
 
     """
     Parse information from the PDB file into `Protein` object.

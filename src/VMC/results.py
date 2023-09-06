@@ -243,12 +243,7 @@ def line_counter(csv_dir: str) -> int:
 Notes
 -----
 .. [1]
-@article{pygenstability,
-         author = {Arnaudon, Alexis and Schindler, Dominik J. and Peach, Robert L. and Gosztolai, Adam and Hodges, Maxwell and Schaub, Michael T. and Barahona, Mauricio},
-         title = {PyGenStability: Multiscale community detection with generalized Markov Stability},
-         publisher = {arXiv},
-         year = {2023},
-         doi = {10.48550/ARXIV.2303.05385},
-         url = {https://arxiv.org/abs/2303.05385}
-}
+Arnaudon, Alexis, Dominik J. Schindler, Robert L. Peach, Adam Gosztolai, Maxwell Hodges, Michael T. Schaub, and Mauricio Barahona.
+"PyGenStability: Multiscale community detection with generalized Markov Stability."
+arXiv preprint arXiv:2303.05385 (2023).
 """
