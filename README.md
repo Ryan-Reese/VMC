@@ -11,7 +11,9 @@ For background information on this method of graph partitioning and examples of 
 
 ## Usage
 
-This package was written so that results from the packages [*Bagpype*](https://github.com/FlorianSong/BagPype) and [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master) can be directly fed in.
+This package was designed so that results from the packages [*Bagpype*](https://github.com/FlorianSong/BagPype) [11] and [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master) [12] can be directly fed in. The package also includes [scripts](src/VMC/precompute_A.py) that simplify the process of obtaining these results. An illustration of the intended scheme is shown below:
+
+<img src="/assets/scheme.png" alt="scheme" width="">
 
 ## Functions
 
