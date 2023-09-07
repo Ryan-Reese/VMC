@@ -9,7 +9,7 @@ For background information on this method of graph partitioning and examples of 
 <img src="/assets/header_1.png" alt="header_1" width="400"> <img src="/assets/header_2.png" alt="header_2" width="400">
 
 ## Usage
-This package was designed so that results from the packages [*Bagpype*](https://github.com/FlorianSong/BagPype)[^11] and [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master)[^12] can be directly fed in. The package also includes [scripts](src/VMC/precompute_A.py) that simplify the process of obtaining these results. An illustration of the intended scheme is shown below:
+This package was designed so that results from the packages [*Bagpype*](https://github.com/FlorianSong/BagPype)[^11] and [*PyGenStability*](https://github.com/barahona-research-group/PyGenStability/tree/master)[^12] can be directly fed in. The package also includes [scripts](./src/VMC/precompute_A.py) that simplify the process of obtaining these results. An illustration of the intended scheme is shown below:
 
 <img src="/assets/scheme.png" alt="scheme" width="">
 
@@ -55,7 +55,8 @@ ADK.load_PDB()
 <img src="/assets/demo_load_protein.png" alt="demo_load_protein" width="400">
 
 > [!NOTE]
-> If a local PDB file is used, ensure that the PDB file is saved in the relative directory `./PDBs`
+> If a local PDB file is used, ensure that the PDB file is saved in the relative directory `./PDBs`.
+> Otherwise, *VMC* will raise an error when the specified PDB file cannot be found.
 
 ### Loading the results of Markov Stability
 Before atoms communities can be visualised, results must be loaded into the `Protein` object. 
@@ -78,17 +79,17 @@ For instance,
 ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime = “040823-19_40”)
 ```
 
-<img src="/assets/demo_load_results.png" alt="demo_load_results" width="400">
+<img src="/assets/demo_load_results_print.png" alt="demo_load_results_print" width="">
 
 > [!NOTE]
-> Results obtained using the included [scripts](src/VMC/precompute_A.py) are automatically saved in the relative directory `./pygenstability`.
+> Results obtained using the included [scripts](./src/VMC/precompute_A.py) are automatically saved in the relative directory `./pygenstability`.
 > By default, *VMC* searches for the results file in this folder when attempting to load results, hence using the included [scripts](src/VMC/precompute_A.py) is recommended.
 
 ### Visualising Atom Communities
 We finally arrive at the crux of the package!
-To colour and visualise atoms by their community, simply use the method `visualise_A()`.
 
-The only parameter that **has** to be specified is the Markov timescale that would like to be visualised. Optional parameters for `visualise_A()` are specified in the [protein](src/VMC/protein.py) module.
+To colour and visualise atoms by their community, simply use the method `visualise_A()`.
+The only parameter that **has** to be specified is the Markov timescale that would like to be visualised. Optional parameters for `visualise_A()` are specified in the [`protein`](src/VMC/protein.py) module.
 
 ```python
 ADK.visualise_A(scale = 90)
