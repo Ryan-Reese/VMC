@@ -81,8 +81,8 @@ ADK.load_results(matrix_type = “A”, constructor = “linearized”, datetime
 <img src="/assets/demo_load_results.png" alt="demo_load_results" width="400">
 
 > [!NOTE]
-> Results obtained using the included [scripts](src/VMC/precompute_A.py) are automatically saved in the relative directory `./pygenstability`.
-> By default, *VMC* searches for the results file in this folder when attempting to load results, hence using the included [scripts](src/VMC/precompute_A.py) is recommended.
+> Results obtained using the included [precomputation scripts](./src/VMC/precompute_A.py) are automatically saved in the relative directory `./pygenstability`.
+> By default, *VMC* searches for the results file in this folder when attempting to load results, hence using the included scripts is recommended.
 
 ### Visualising Atom Communities
 We finally arrive at the crux of the package!
@@ -134,8 +134,8 @@ https://github.com/Ryan-Reese/VMC/assets/109569773/e6d1757f-9a0c-4988-95e3-83443
 
 Currently built-in methods for the `Protein` class are:
 | Method | Function |
-| :---: | :---: |
-| 
+| :--- | :--- |
+| `load_PDB()` 
 
 ## Contributors
  - Ryan Reese, Yaliraki Group, Department of Chemistry, Imperial College London
