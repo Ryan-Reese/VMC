@@ -135,8 +135,14 @@ https://github.com/Ryan-Reese/VMC/assets/109569773/e6d1757f-9a0c-4988-95e3-83443
 
 Currently built-in methods for the `Protein` class are:
 | Method | Function |
-| :--- | :--- |
-| `load_PDB()` 
+| :---: | :--- |
+| `load_PDB()` | Loads the structure of the protein into PyMol using its PDB file |
+| `load_results()` | Loads the Markov Stability results into the `Protein` object |
+| `image()` | Saves a PNG image of the protein into the `./pymol_images/` directory |
+| `compile()` | Compiles the images in the `./pymol_images/` directory into an MP4v video |
+| `plot()` | Plots the Markov Stability results using MatPlotLib |
+| `visualise_A()` | Colour atoms based on their communities at a specific Markov timescale |
+| `visualise_multi_A()` | Colour atoms based on their communities at multiple Markov timescales |
 
 ## Contributors
  - Ryan Reese, Yaliraki Group, Department of Chemistry, Imperial College London

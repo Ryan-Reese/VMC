@@ -173,7 +173,7 @@ class Protein:
                     show_entire_community: bool = False,
                     image: bool = False) -> None:
 
-        """The main operation of VMC, colouring atoms based on their communities during a specific Markov timescale.
+        """The main operation of VMC, colouring atoms based on their communities at a specific Markov timescale.
 
         This operation is only to be used when Markov Stability analysis has been run on adjacency (A) matrices.
         If communities at multiple Markov timescales would like to be visualised, please use the `visualise_multi_A()` method instead.
